@@ -26,7 +26,6 @@
     gotClicked: function(clickY, clickX) {
       this.dotMatches = [];
       this.dotMatches.push([clickY, clickX]);
-      this.whatDirection(clickY, clickX);
       this.recurse(clickY, clickX);
       if (this.dotMatches.length > 2) {
         Painter.removeMatches();

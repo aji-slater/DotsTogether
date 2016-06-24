@@ -17,7 +17,7 @@
   gotClicked: (clickY, clickX) ->
     @dotMatches = []
     @dotMatches.push([clickY, clickX])
-    @whatDirection(clickY, clickX)
+    # @whatDirection(clickY, clickX)
     @recurse(clickY, clickX)
     Painter.removeMatches() if @.dotMatches.length > 2
     @spiralOut()
