@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "document.js",
+  "sourceRoot": "../../DotsTogether",
+  "sources": [
+    "coffeescript/document.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;EAAA,CAAA,CAAE,SAAA;WAEA,CAAA,CAAE,MAAF,CAAS,CAAC,EAAV,CAAa,OAAb,EAAsB,SAAC,KAAD;AACpB,UAAA;MAAA,IAAA,GAAO,CAAA,CAAE,IAAF;MAGP,KAAA,GAAQ,OAAO,CAAC,KAAR,CAAc,IAAd,EAAoB,KAApB;MACR,KAAA,GAAQ,OAAO,CAAC,KAAR,CAAc,IAAd,EAAoB,MAApB;aACR,OAAO,CAAC,UAAR,CAAmB,KAAnB,EAA0B,KAA1B;IANoB,CAAtB;EAFA,CAAF;AAAA"
+}
