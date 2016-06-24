@@ -1,0 +1,26 @@
+main {
+  background-color: #eee;
+  content: '';
+  height: 300px;
+  position: relative;
+  width: 300px; }
+
+.dot {
+  border-radius: 50%;
+  height: 20px;
+  position: absolute;
+  width: 20px; }
+  .dot.alpha {
+    background-color: #5cacc4; }
+  .dot.bravo {
+    background-color: #8cd19d; }
+  .dot.charlie {
+    background-color: #cee879; }
+  .dot.delta {
+    background-color: #fcb653; }
+  .dot.echo {
+    background-color: #ff5254; }
+  .dot.foxtrot {
+    background-color: #a23b72; }
+
+/*# sourceMappingURL=base.css.map */
