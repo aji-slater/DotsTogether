@@ -34,17 +34,47 @@
       return this.spiralOut();
     },
     whatDirection: function(dotY, dotX) {
-      var directions, line, lineY, linesHash, results;
+      var directions, line, lineY, linesHash;
       directions = {};
       linesHash = window.Game.linesHash;
-      results = [];
       for (line in linesHash) {
         if (!hasProp.call(linesHash, line)) continue;
         lineY = linesHash[line].m * dotX + linesHash[line].b;
-        console.log("for line " + line + ", the line is: (" + dotX + ", " + lineY + ") and the dot is: (" + dotX + ", " + dotY + ")");
-        results.push(console.log("Therefore is the dot above the line? " + (lineY > dotY)));
+        directions[line] = lineY > dotY;
       }
-      return results;
+      return console.log("dot is in slice# " + (this.whatSlice(directions)));
+    },
+    whatSlice: function(directions) {
+      console.log(directions);
+      if (directions.A === true) {
+        if (directions.C === true) {
+          if (directions.B === true) {
+            return 1;
+          } else {
+            return 0;
+          }
+        } else {
+          if (directions.D === true) {
+            return 2;
+          } else {
+            return 3;
+          }
+        }
+      } else {
+        if (directions.C === true) {
+          if (directions.D === true) {
+            return 7;
+          } else {
+            return 6;
+          }
+        } else {
+          if (directions.B === true) {
+            return 4;
+          } else {
+            return 5;
+          }
+        }
+      }
     },
     recurse: function(currentY, currentX) {
       var currentVal, k, len, move, neighborVal, neighborX, neighborY, ref, results;

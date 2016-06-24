@@ -30,11 +30,36 @@
       # compare y to y'
       lineY = linesHash[line].m * dotX + linesHash[line].b
       # console.log lineY > dotY
-      # directions[line] = lineY > dotY # is the dotY above?
+      directions[line] = lineY > dotY # is the dotY above?
 
-      console.log "for line #{line}, the line is: (#{dotX}, #{lineY}) and the dot is: (#{dotX}, #{dotY})"
-      console.log "Therefore is the dot above the line? #{lineY > dotY}"
-    # console.log directions
+      # console.log "for line #{line}, the line is: (#{dotX}, #{lineY}) and the dot is: (#{dotX}, #{dotY})"
+      # console.log "Therefore is the dot above the line? #{lineY > dotY}"
+    console.log "dot is in slice# #{@whatSlice directions}"
+
+  whatSlice: (directions) ->
+    console.log directions
+    if directions.A == true
+      if directions.C == true
+        if directions.B == true
+          return 1
+        else
+          return 0
+      else
+        if directions.D == true
+          return 2
+        else
+          return 3
+    else
+      if directions.C == true
+        if directions.D == true
+          return 7
+        else
+          return 6
+      else
+        if directions.B == true
+          return 4
+        else
+          return 5
 
   recurse: (currentY, currentX) ->
     for move in Game.neighbors
