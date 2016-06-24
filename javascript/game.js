@@ -10,19 +10,19 @@
     neighbors: [[-1, 0], [0, -1], [0, 1], [1, 0]],
     linesHash: {
       A: {
-        m: -0.5,
+        m: 0.5,
         b: 0
       },
       B: {
-        m: -2,
-        b: 0
-      },
-      C: {
         m: 2,
         b: 0
       },
+      C: {
+        m: -2,
+        b: 0
+      },
       D: {
-        m: 0.5,
+        m: -0.5,
         b: 0
       }
     },
@@ -46,13 +46,13 @@
       }
     },
     calculateBValues: function() {
-      var line, ref, results;
-      console.log(this.linesHash);
+      var centerPoint, line, ref, results;
+      centerPoint = this.center;
       ref = this.linesHash;
       results = [];
       for (line in ref) {
         if (!hasProp.call(ref, line)) continue;
-        console.log(this.linesHash.A);
+        this.linesHash[line].b = centerPoint + (this.linesHash[line].m * (-centerPoint));
         results.push(void 0);
       }
       return results;

@@ -15,11 +15,26 @@
     true
 
   gotClicked: (clickY, clickX) ->
-    @.dotMatches = []
-    @.dotMatches.push([clickY, clickX])
-    @.recurse(clickY, clickX)
+    @dotMatches = []
+    @dotMatches.push([clickY, clickX])
+    @whatDirection(clickY, clickX)
+    @recurse(clickY, clickX)
     Painter.removeMatches() if @.dotMatches.length > 2
-    @.spiralOut()
+    @spiralOut()
+
+  whatDirection: (dotY, dotX) ->
+    directions = {}
+    linesHash = window.Game.linesHash
+    for own line of linesHash
+      # x' into y=mx'+b
+      # compare y to y'
+      lineY = linesHash[line].m * dotX + linesHash[line].b
+      # console.log lineY > dotY
+      # directions[line] = lineY > dotY # is the dotY above?
+
+      console.log "for line #{line}, the line is: (#{dotX}, #{lineY}) and the dot is: (#{dotX}, #{dotY})"
+      console.log "Therefore is the dot above the line? #{lineY > dotY}"
+    # console.log directions
 
   recurse: (currentY, currentX) ->
     for move in Game.neighbors
@@ -29,8 +44,8 @@
       continue if (@.evaluateEdges(neighborY, neighborX))
       neighborVal = Game.board[neighborY][neighborX]
       if currentVal == neighborVal and @.notAlreadyObserved(neighborY, neighborX)
-        @.dotMatches.push([neighborY, neighborX])
-        @.recurse(neighborY, neighborX)
+        @dotMatches.push([neighborY, neighborX])
+        @recurse(neighborY, neighborX)
       else
         continue
 
