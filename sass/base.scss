@@ -1,0 +1,40 @@
+@import 'color';
+
+main {
+  background-color: $bg-color;
+  content: '';
+  height: 300px;
+  position: relative;
+  width: 300px;
+}
+
+.dot {
+  border-radius: 50%;
+  height: 20px;
+  position: absolute;
+  width: 20px;
+
+  &.alpha {
+    background-color: $alpha;
+  }
+
+  &.bravo {
+    background-color: $bravo;
+  }
+
+  &.charlie {
+    background-color: $charlie;
+  }
+
+  &.delta {
+    background-color: $delta;
+  }
+
+  &.echo {
+    background-color: $echo;
+  }
+
+  &.foxtrot {
+    background-color: $foxtrot;
+  }
+}
