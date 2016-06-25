@@ -6,7 +6,10 @@
       that = $(this);
       thisY = Thinker.coord(that, 'top');
       thisX = Thinker.coord(that, 'left');
-      return Thinker.gotClicked(thisY, thisX);
+      Thinker.gotClicked(thisY, thisX);
+      Thinker.decrementMove(1);
+      Thinker.checkRules();
+      return Painter.scoreboard();
     });
   });
 

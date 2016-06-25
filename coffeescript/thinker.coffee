@@ -24,7 +24,9 @@
     @dotMatches.push([clickY, clickX])
     # @whatDirection(clickY, clickX)
     @recurse(clickY, clickX)
-    Painter.removeMatches() if @.dotMatches.length > 2
+    if @dotMatches.length > 2
+      Painter.removeMatches()
+      Game.addScore(@dotMatches.length)
     @spiralOut() until @Game.noMoreBlanks() == true
 
   whatDirection: (dotY, dotX) ->
@@ -173,3 +175,21 @@
         return 'Q2'
       else
         return 'Q1'
+
+  decrementMove: (moves) ->
+    Game.moves(-moves)
+
+  checkRules: ->
+    if Game.dotsScored - (Game.fiftiesScored * 50) >= 50
+      Game.movesLeft += 10
+      Game.fiftiesScored += 1
+
+    if Game.movesLeft == 0
+      Painter.scoreboard()
+      alert 'Game over! Too bad so sad.'
+      location.reload()
+
+    if Game.movesLeft <= 3
+      $('h1').css 'color', 'red'
+    else
+      $('h1').css 'color', 'black'

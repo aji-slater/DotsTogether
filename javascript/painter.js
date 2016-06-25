@@ -53,6 +53,11 @@
     },
     makeMeADiv: function(y, x) {
       return "<div class='dot " + (Painter.color(Game.board[y][x])) + " pos-" + y + "-" + x + "'></div>";
+    },
+    scoreboard: function() {
+      $('span#moves_left').html(Game.movesLeft);
+      $('span#dots_scored').html(Game.dotsScored);
+      return Game.resetCurrentMove();
     }
   };
 

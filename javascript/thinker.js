@@ -33,6 +33,7 @@
       this.recurse(clickY, clickX);
       if (this.dotMatches.length > 2) {
         Painter.removeMatches();
+        Game.addScore(this.dotMatches.length);
       }
       results = [];
       while (this.Game.noMoreBlanks() !== true) {
@@ -174,6 +175,25 @@
         } else {
           return 'Q1';
         }
+      }
+    },
+    decrementMove: function(moves) {
+      return Game.moves(-moves);
+    },
+    checkRules: function() {
+      if (Game.dotsScored - (Game.fiftiesScored * 50) >= 50) {
+        Game.movesLeft += 10;
+        Game.fiftiesScored += 1;
+      }
+      if (Game.movesLeft === 0) {
+        Painter.scoreboard();
+        alert('Game over! Too bad so sad.');
+        location.reload();
+      }
+      if (Game.movesLeft <= 3) {
+        return $('h1').css('color', 'red');
+      } else {
+        return $('h1').css('color', 'black');
       }
     }
   };

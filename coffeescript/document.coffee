@@ -8,4 +8,8 @@ $ ->
     thisX = Thinker.coord(that, 'left')
     Thinker.gotClicked(thisY, thisX)
 
+    Thinker.decrementMove(1)
+    Thinker.checkRules()
+    Painter.scoreboard()
+
   # $(document).on('keyup', function() { Thinker.spiralOut(); });
