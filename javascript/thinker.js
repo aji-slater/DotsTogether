@@ -33,7 +33,8 @@
       if (this.dotMatches.length > 2) {
         Painter.removeMatches();
       }
-      return this.spiralOut();
+      this.spiralOut();
+      return console.log(this.Game.noMoreBlanks() === true);
     },
     whatDirection: function(dotY, dotX) {
       var directions, line, lineY, linesHash;
@@ -130,7 +131,7 @@
             if (currentDotValue === ' ') {
               movementValue = this.sliceMovement(this.whatDirection(currentY, currentX));
               sliceMoveDot = [currentY + movementValue[0], currentX + movementValue[1]];
-              if (currentDot[0] === this.Game.size || currentDot[0] === 0 || currentDot[1] === this.Game.size || currentDot[1] === 0) {
+              if (currentDot[0] === this.Game.size - 1 || currentDot[0] === 0 || currentDot[1] === this.Game.size - 1 || currentDot[1] === 0) {
                 this.Game.board[currentY][currentX] = this.Game.randomColorAssignment();
                 this.Painter.repaintOne(currentY, currentX);
               } else {

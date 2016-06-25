@@ -26,6 +26,7 @@
     @recurse(clickY, clickX)
     Painter.removeMatches() if @.dotMatches.length > 2
     @spiralOut()
+    console.log @Game.noMoreBlanks() == true
 
   whatDirection: (dotY, dotX) ->
     directions = {}
@@ -118,9 +119,9 @@
 
             sliceMoveDot = [currentY + movementValue[0], currentX + movementValue[1]]
 
-            if currentDot[0] == @Game.size or
+            if currentDot[0] == @Game.size-1 or
               currentDot[0] == 0 or
-              currentDot[1] == @Game.size or
+              currentDot[1] == @Game.size-1 or
               currentDot[1] == 0
               # current dot is on an edge
 

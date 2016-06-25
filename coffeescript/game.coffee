@@ -30,7 +30,7 @@
       @size = size
       @center = Math.floor(size / 2)
       buildingBoard = []
-      for i in [1..size+1]
+      for i in [1..size]
         buildingBoard.push(this.generateGameRow(size))
       return buildingBoard
     else
@@ -46,9 +46,16 @@
 
   generateGameRow: (size) ->
     row = []
-    for i in [1..size+1]
+    for i in [1..size]
       row.push(Math.floor(Math.random() * 5))
     row
 
   randomColorAssignment: ->
     return Math.floor(Math.random() * 5)
+
+  noMoreBlanks: ->
+    for y in [0...@size]
+      for x in [0...@size]
+        console.log "(#{y}, #{x})"
+        return false if @board[y][x] == " " or @board[y][x] == undefined
+    true
