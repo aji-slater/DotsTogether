@@ -22,13 +22,13 @@
       b: 0
 
   initialize: (size) ->
-    @.board = @.generateBoard(size)
-    @.calculateBValues()
+    @board = @generateBoard(size)
+    @calculateBValues()
 
   generateBoard: (size) ->
     if size % 2 == 1
-      @.size = size
-      @.center = Math.floor(size / 2)
+      @size = size
+      @center = Math.floor(size / 2)
       buildingBoard = []
       for i in [1..size+1]
         buildingBoard.push(this.generateGameRow(size))

@@ -3,6 +3,9 @@
   var hasProp = {}.hasOwnProperty;
 
   this.Thinker = {
+    Painter: window.Painter,
+    Game: window.Game,
+    sliceMovementArray: [[-1, -1], [-1, 0], [-1, 1], [0, 1], [1, 1], [1, 0], [1, -1], [0, -1]],
     coord: function(that, direction) {
       var number;
       number = parseInt(that.css(direction));
@@ -35,16 +38,15 @@
     whatDirection: function(dotY, dotX) {
       var directions, line, lineY, linesHash;
       directions = {};
-      linesHash = window.Game.linesHash;
+      linesHash = this.Game.linesHash;
       for (line in linesHash) {
         if (!hasProp.call(linesHash, line)) continue;
         lineY = linesHash[line].m * dotX + linesHash[line].b;
         directions[line] = lineY > dotY;
       }
-      return console.log("dot is in slice# " + (this.whatSlice(directions)));
+      return this.whatSlice(directions);
     },
     whatSlice: function(directions) {
-      console.log(directions);
       if (directions.A === true) {
         if (directions.C === true) {
           if (directions.B === true) {
@@ -97,8 +99,11 @@
       }
       return results;
     },
+    sliceMovement: function(slice) {
+      return this.sliceMovementArray[slice];
+    },
     spiralOut: function() {
-      var currentDot, fourDirections, fourMovements, i, j, l, results;
+      var currentDot, currentDotValue, currentX, currentY, fourDirections, fourMovements, i, j, l, movementValue, results, sliceMoveDot;
       fourDirections = [0, 1, 0, 1];
       fourMovements = [1, 1, -1, -1];
       currentDot = [Game.center, Game.center];
@@ -113,6 +118,20 @@
           l = 1;
           while (l <= i) {
             currentDot[fourDirections[j]] += fourMovements[j];
+            currentY = currentDot[0];
+            currentX = currentDot[1];
+            currentDotValue = window.Game.board[currentDot[0]][currentDot[1]];
+            sliceMoveDot = [currentY + movementValue[0], currentX + movementValue[1]];
+            if (currentDotValue === ' ') {
+              movementValue = this.sliceMovement(this.whatDirection(currentY, currentX));
+              if (currentDot[0] >= this.Game.size || currentDot[0] < 0 || currentDot[1] >= this.Game.size || currentDot[1] < 0) {
+
+              } else {
+                this.Game.board[currentDot[0]][currentDot[1]] = this.Game.board[sliceMoveDot[0]][sliceMoveDot[1]];
+                this.Game.board[sliceMoveDot[0]][sliceMoveDot[1]] = ' ';
+                this.Painter.repaintOne(currentDot[0], currentDot[1]);
+              }
+            }
             l++;
           }
           j++;
