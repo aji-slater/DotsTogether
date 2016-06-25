@@ -49,3 +49,8 @@
 
   makeMeADiv: (y, x) ->
     "<div class='dot #{Painter.color(Game.board[y][x])} pos-#{y}-#{x}'></div>"
+
+  scoreboard: ->
+    $('span#moves_left').html(Game.movesLeft)
+    $('span#dots_scored').html(Game.dotsScored)
+    Game.resetCurrentMove()

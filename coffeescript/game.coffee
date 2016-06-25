@@ -2,6 +2,11 @@
   board: []
   size: 0
   center: 0
+  movesLeft: 10
+  dotsScored: 0
+  currentMoveScore: 0
+  fiftiesScored: 0
+
   dotsInPixels: 20
   neighbors:         [[-1, 0]
               [0, -1]
@@ -58,3 +63,13 @@
       for x in [0...@size]
         return false if @board[y][x] == " " or @board[y][x] == undefined
     true
+
+  moves: (num) ->
+    @movesLeft += num
+
+  addScore: (num) ->
+    @dotsScored += num
+    @currentMoveScore += num
+
+  resetCurrentMove: ->
+    @currentMoveScore = 0

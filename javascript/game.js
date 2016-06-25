@@ -6,6 +6,10 @@
     board: [],
     size: 0,
     center: 0,
+    movesLeft: 10,
+    dotsScored: 0,
+    currentMoveScore: 0,
+    fiftiesScored: 0,
     dotsInPixels: 20,
     neighbors: [[-1, 0], [0, -1], [0, 1], [1, 0]],
     linesHash: {
@@ -78,6 +82,16 @@
         }
       }
       return true;
+    },
+    moves: function(num) {
+      return this.movesLeft += num;
+    },
+    addScore: function(num) {
+      this.dotsScored += num;
+      return this.currentMoveScore += num;
+    },
+    resetCurrentMove: function() {
+      return this.currentMoveScore = 0;
     }
   };
 
