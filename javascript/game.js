@@ -64,6 +64,9 @@
         row.push(Math.floor(Math.random() * 5));
       }
       return row;
+    },
+    randomColorAssignment: function() {
+      return Math.floor(Math.random() * 5);
     }
   };
 

@@ -95,41 +95,48 @@
     # for (var i = 1; i < Game.size + 1; i++) {
 
       j = 0
-      while j < 4
-      # for j in [0...4]
+      # while j < 4
+      for j in [0...4]
       # for (var j = 0; j < 4; j++) {
         if j == 2
         # if (j === 2) { i++; }
           i++
 
         l = 1
-        while l <= i
-        # for l in [1..i]
+        # while l <= i
+        for l in [1..i]
         # for (var l = 1; l <= i; l++) {
           currentDot[fourDirections[j]] += fourMovements[j]
           currentY = currentDot[0]
           currentX = currentDot[1]
-          currentDotValue = window.Game.board[currentDot[0]][currentDot[1]]
-
-          sliceMoveDot = [currentY + movementValue[0], currentX + movementValue[1]]
+          continue if currentY >= @Game.size or currentX >= @Game.size
+          continue if currentY < 0 or currentX < 0
+          currentDotValue = @Game.board[currentDot[0]][currentDot[1]]
 
           if currentDotValue == ' '
             movementValue = @sliceMovement( @whatDirection currentY, currentX )
 
-            if currentDot[0] >= @Game.size ||
-              currentDot[0] < 0 ||
-              currentDot[1] >= @Game.size ||
-              currentDot[1] < 0
+            sliceMoveDot = [currentY + movementValue[0], currentX + movementValue[1]]
+
+            if currentDot[0] == @Game.size or
+              currentDot[0] == 0 or
+              currentDot[1] == @Game.size or
+              currentDot[1] == 0
               # current dot is on an edge
-              
+
+                @Game.board[currentY][currentX] = @Game.randomColorAssignment()
+                @Painter.repaintOne currentY, currentX
 
             else
-
-              @Game.board[currentDot[0]][currentDot[1]] = @Game.board[sliceMoveDot[0]][sliceMoveDot[1]]
+              # console.log "Y: #{sliceMoveDot[0]}"
+              # console.log "X: #{sliceMoveDot[1]}"
+              # console.log "Val: #{@Game.board[sliceMoveDot[0]][sliceMoveDot[1]]}"
+              @Game.board[currentY][currentX] = @Game.board[sliceMoveDot[0]][sliceMoveDot[1]]
 
               @Game.board[sliceMoveDot[0]][sliceMoveDot[1]] = ' '
 
-              @Painter.repaintOne(currentDot[0], currentDot[1])
+              @Painter.repaintOne currentY, currentX
+              @Painter.repaintOne sliceMoveDot[0], sliceMoveDot[1]
           # Here's where a thing happens
           # Game.board[currentDot[0]][currentDot[1]] += 1;
           # if (Game.board[currentDot[0]][currentDot[1]] > 5) {
@@ -143,8 +150,8 @@
           # run the quadrant/slice finder to determine the direction the dot should come from.
 
           # and ends here
-          l++
-        j++
+          # l++
+        # j++
       i++
 
   evaluateEdges: (evaluatingY, evaluatingX) ->

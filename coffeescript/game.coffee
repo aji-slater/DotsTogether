@@ -49,3 +49,6 @@
     for i in [1..size+1]
       row.push(Math.floor(Math.random() * 5))
     row
+
+  randomColorAssignment: ->
+    return Math.floor(Math.random() * 5)

@@ -103,7 +103,7 @@
       return this.sliceMovementArray[slice];
     },
     spiralOut: function() {
-      var currentDot, currentDotValue, currentX, currentY, fourDirections, fourMovements, i, j, l, movementValue, results, sliceMoveDot;
+      var currentDot, currentDotValue, currentX, currentY, fourDirections, fourMovements, i, j, k, l, m, movementValue, ref, results, sliceMoveDot;
       fourDirections = [0, 1, 0, 1];
       fourMovements = [1, 1, -1, -1];
       currentDot = [Game.center, Game.center];
@@ -111,30 +111,36 @@
       results = [];
       while (i < Game.size + 1) {
         j = 0;
-        while (j < 4) {
+        for (j = k = 0; k < 4; j = ++k) {
           if (j === 2) {
             i++;
           }
           l = 1;
-          while (l <= i) {
+          for (l = m = 1, ref = i; 1 <= ref ? m <= ref : m >= ref; l = 1 <= ref ? ++m : --m) {
             currentDot[fourDirections[j]] += fourMovements[j];
             currentY = currentDot[0];
             currentX = currentDot[1];
-            currentDotValue = window.Game.board[currentDot[0]][currentDot[1]];
-            sliceMoveDot = [currentY + movementValue[0], currentX + movementValue[1]];
+            if (currentY >= this.Game.size || currentX >= this.Game.size) {
+              continue;
+            }
+            if (currentY < 0 || currentX < 0) {
+              continue;
+            }
+            currentDotValue = this.Game.board[currentDot[0]][currentDot[1]];
             if (currentDotValue === ' ') {
               movementValue = this.sliceMovement(this.whatDirection(currentY, currentX));
-              if (currentDot[0] >= this.Game.size || currentDot[0] < 0 || currentDot[1] >= this.Game.size || currentDot[1] < 0) {
-
+              sliceMoveDot = [currentY + movementValue[0], currentX + movementValue[1]];
+              if (currentDot[0] === this.Game.size || currentDot[0] === 0 || currentDot[1] === this.Game.size || currentDot[1] === 0) {
+                this.Game.board[currentY][currentX] = this.Game.randomColorAssignment();
+                this.Painter.repaintOne(currentY, currentX);
               } else {
-                this.Game.board[currentDot[0]][currentDot[1]] = this.Game.board[sliceMoveDot[0]][sliceMoveDot[1]];
+                this.Game.board[currentY][currentX] = this.Game.board[sliceMoveDot[0]][sliceMoveDot[1]];
                 this.Game.board[sliceMoveDot[0]][sliceMoveDot[1]] = ' ';
-                this.Painter.repaintOne(currentDot[0], currentDot[1]);
+                this.Painter.repaintOne(currentY, currentX);
+                this.Painter.repaintOne(sliceMoveDot[0], sliceMoveDot[1]);
               }
             }
-            l++;
           }
-          j++;
         }
         results.push(i++);
       }
