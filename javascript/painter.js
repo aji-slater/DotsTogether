@@ -36,8 +36,7 @@
         removingY = match[0];
         removingX = match[1];
         byebyeDot = $(".pos-" + removingY + "-" + removingX);
-        Game.board[removingY][removingX] = ' ';
-        results.push(byebyeDot.remove());
+        results.push(Game.board[removingY][removingX] = ' ');
       }
       return results;
     },

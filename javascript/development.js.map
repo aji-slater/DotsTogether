@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "development.js",
+  "sourceRoot": "../../DotsTogether",
+  "sources": [
+    "coffeescript/development.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;;AAAA"
+}

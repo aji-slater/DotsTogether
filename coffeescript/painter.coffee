@@ -34,7 +34,7 @@
         removingX = match[1]
         byebyeDot = $(".pos-#{removingY}-#{removingX}")
         Game.board[removingY][removingX] = ' '
-        byebyeDot.remove()
+        # byebyeDot.remove()
 
   repaintOne: (y, x) ->
     Painter.removeColorClasses(y, x)

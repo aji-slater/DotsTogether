@@ -9,29 +9,28 @@
                       [1, 0]]
   linesHash:
     A:
-      m: -0.5
+      m: 0.5
       b: 0
     B:
-      m: -2
-      b: 0
-    C:
       m: 2
       b: 0
+    C:
+      m: -2
+      b: 0
     D:
-      m: 0.5
+      m: -0.5
       b: 0
 
   initialize: (size) ->
-    @.board = @.generateBoard(size)
-    @.calculateBValues()
+    @board = @generateBoard(size)
+    @calculateBValues()
 
   generateBoard: (size) ->
     if size % 2 == 1
-      @.size = size
-      @.center = Math.floor(size / 2)
+      @size = size
+      @center = Math.floor(size / 2)
       buildingBoard = []
-      for i in [1..size+1]
-      # for (var i = 1; i < size + 1; i++) {
+      for i in [1..size]
         buildingBoard.push(this.generateGameRow(size))
       return buildingBoard
     else
@@ -39,17 +38,23 @@
       return false
 
   calculateBValues: ->
-    console.log(@linesHash)
+    centerPoint = @center
     for own line of @linesHash
-      # n = line.m * ( - Game.center )
-      # line.b = n + Game.center
-      console.log(@linesHash.A)
+      @linesHash[line].b = centerPoint + ( @linesHash[line].m * (-centerPoint))
       undefined
 
 
   generateGameRow: (size) ->
     row = []
-    for i in [1..size+1]
-    # for (var i = 1; i < size + 1; i++) {
+    for i in [1..size]
       row.push(Math.floor(Math.random() * 5))
     row
+
+  randomColorAssignment: ->
+    return Math.floor(Math.random() * 5)
+
+  noMoreBlanks: ->
+    for y in [0...@size]
+      for x in [0...@size]
+        return false if @board[y][x] == " " or @board[y][x] == undefined
+    true
