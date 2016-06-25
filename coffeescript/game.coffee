@@ -56,6 +56,5 @@
   noMoreBlanks: ->
     for y in [0...@size]
       for x in [0...@size]
-        console.log "(#{y}, #{x})"
         return false if @board[y][x] == " " or @board[y][x] == undefined
     true

@@ -27,14 +27,18 @@
       return true;
     },
     gotClicked: function(clickY, clickX) {
+      var results;
       this.dotMatches = [];
       this.dotMatches.push([clickY, clickX]);
       this.recurse(clickY, clickX);
       if (this.dotMatches.length > 2) {
         Painter.removeMatches();
       }
-      this.spiralOut();
-      return console.log(this.Game.noMoreBlanks() === true);
+      results = [];
+      while (this.Game.noMoreBlanks() !== true) {
+        results.push(this.spiralOut());
+      }
+      return results;
     },
     whatDirection: function(dotY, dotX) {
       var directions, line, lineY, linesHash;

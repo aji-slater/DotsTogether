@@ -25,8 +25,7 @@
     # @whatDirection(clickY, clickX)
     @recurse(clickY, clickX)
     Painter.removeMatches() if @.dotMatches.length > 2
-    @spiralOut()
-    console.log @Game.noMoreBlanks() == true
+    @spiralOut() until @Game.noMoreBlanks() == true
 
   whatDirection: (dotY, dotX) ->
     directions = {}

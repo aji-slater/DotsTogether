@@ -72,7 +72,6 @@
       var j, k, ref, ref1, x, y;
       for (y = j = 0, ref = this.size; 0 <= ref ? j < ref : j > ref; y = 0 <= ref ? ++j : --j) {
         for (x = k = 0, ref1 = this.size; 0 <= ref1 ? k < ref1 : k > ref1; x = 0 <= ref1 ? ++k : --k) {
-          console.log("(" + y + ", " + x + ")");
           if (this.board[y][x] === " " || this.board[y][x] === void 0) {
             return false;
           }
