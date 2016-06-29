@@ -1,25 +1,29 @@
 main {
-  background-color: #eee;
+  background-color: #181203;
   content: '';
-  height: 300px;
+  height: 330px;
   position: relative;
-  width: 300px; }
+  width: 330px; }
 
 .dot {
-  border-radius: 50%;
-  height: 20px;
+  height: 30px;
   position: absolute;
-  width: 20px; }
+  width: 30px; }
   .dot.alpha {
-    background-color: #5cacc4; }
+    background-image: url("../assets/red.png");
+    background-size: 30px 30px; }
   .dot.bravo {
-    background-color: #8cd19d; }
+    background-image: url("../assets/blue.png");
+    background-size: 30px 30px; }
   .dot.charlie {
-    background-color: #cee879; }
+    background-image: url("../assets/yellow.png");
+    background-size: 30px 30px; }
   .dot.delta {
-    background-color: #fcb653; }
+    background-image: url("../assets/purple.png");
+    background-size: 30px 30px; }
   .dot.echo {
-    background-color: #ff5254; }
+    background-image: url("../assets/green.png");
+    background-size: 30px 30px; }
   .dot.foxtrot {
     background-color: #a23b72; }
 

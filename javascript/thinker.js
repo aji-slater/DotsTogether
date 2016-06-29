@@ -9,10 +9,10 @@
     coord: function(that, direction) {
       var number;
       number = parseInt(that.css(direction));
-      return Math.floor(number / 20);
+      return Math.floor(number / 30);
     },
     pixl: function(number) {
-      return number * 20;
+      return number * 30;
     },
     dotMatches: [],
     notAlreadyObserved: function(Y, X) {
@@ -195,6 +195,15 @@
       } else {
         return $('h1').css('color', 'black');
       }
+    },
+    iconClicked: function(that) {
+      var thisX, thisY;
+      thisY = Thinker.coord(that, 'top');
+      thisX = Thinker.coord(that, 'left');
+      Thinker.gotClicked(thisY, thisX);
+      Thinker.decrementMove(1);
+      Thinker.checkRules();
+      return Painter.scoreboard();
     }
   };
 

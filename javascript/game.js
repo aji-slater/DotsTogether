@@ -10,7 +10,7 @@
     dotsScored: 0,
     currentMoveScore: 0,
     fiftiesScored: 0,
-    dotsInPixels: 20,
+    dotsInPixels: 30,
     neighbors: [[-1, 0], [0, -1], [0, 1], [1, 0]],
     linesHash: {
       A: {

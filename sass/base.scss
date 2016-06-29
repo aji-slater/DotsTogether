@@ -3,35 +3,45 @@
 main {
   background-color: $bg-color;
   content: '';
-  height: 300px;
+  height: 330px;
   position: relative;
-  width: 300px;
+  width: 330px;
 }
 
 .dot {
-  border-radius: 50%;
-  height: 20px;
+  // border-radius: 50%;
+  height: 30px;
   position: absolute;
-  width: 20px;
+  width: 30px;
 
   &.alpha {
-    background-color: $alpha;
+    // background-color: $alpha;
+    background-image: url('../assets/red.png');
+    background-size: 30px 30px;
   }
 
   &.bravo {
-    background-color: $bravo;
+    // background-color: $bravo;
+    background-image: url('../assets/blue.png');
+    background-size: 30px 30px;
   }
 
   &.charlie {
-    background-color: $charlie;
+    // background-color: $charlie;
+    background-image: url('../assets/yellow.png');
+    background-size: 30px 30px;
   }
 
   &.delta {
-    background-color: $delta;
+    // background-color: $delta;
+    background-image: url('../assets/purple.png');
+    background-size: 30px 30px;
   }
 
   &.echo {
-    background-color: $echo;
+    // background-color: $echo;
+    background-image: url('../assets/green.png');
+    background-size: 30px 30px;
   }
 
   &.foxtrot {
