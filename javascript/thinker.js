@@ -196,7 +196,7 @@
         return $('h1').css('color', 'black');
       }
     },
-    clickedEvent: function(that) {
+    iconClicked: function(that) {
       var thisX, thisY;
       thisY = Thinker.coord(that, 'top');
       thisX = Thinker.coord(that, 'left');

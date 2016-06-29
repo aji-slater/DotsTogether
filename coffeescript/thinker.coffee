@@ -193,7 +193,7 @@
     else
       $('h1').css 'color', 'black'
 
-  clickedEvent: (that) ->
+  iconClicked: (that) ->
     thisY = Thinker.coord that, 'top'
     thisX = Thinker.coord that, 'left'
     Thinker.gotClicked thisY, thisX

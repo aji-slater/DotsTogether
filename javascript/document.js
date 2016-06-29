@@ -4,7 +4,7 @@
     return $('.dot').on('click', function(event) {
       var that;
       that = $(this);
-      return Thinker.clickedEvent(that);
+      return Thinker.iconClicked(that);
     });
   });
 
