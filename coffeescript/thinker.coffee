@@ -2,7 +2,6 @@
   Painter: window.Painter
   Game:    window.Game
 
-
   sliceMovementArray: [[-1, -1], [-1, 0], [-1, 1], [0, 1], [1, 1], [1, 0], [1, -1], [0, -1]]
 
   coord: (that, direction) ->
