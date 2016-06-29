@@ -7,10 +7,10 @@
 
   coord: (that, direction) ->
     number = parseInt(that.css(direction))
-    Math.floor number / 20
+    Math.floor number / 30
 
   pixl: (number) ->
-    number * 20
+    number * 30
 
   dotMatches: []
 
@@ -193,3 +193,11 @@
       $('h1').css 'color', 'red'
     else
       $('h1').css 'color', 'black'
+
+  clickedEvent: (that) ->
+    thisY = Thinker.coord that, 'top'
+    thisX = Thinker.coord that, 'left'
+    Thinker.gotClicked thisY, thisX
+    Thinker.decrementMove(1)
+    Thinker.checkRules()
+    Painter.scoreboard()

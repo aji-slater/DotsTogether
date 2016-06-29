@@ -2,14 +2,9 @@
 (function() {
   $(function() {
     return $('.dot').on('click', function(event) {
-      var that, thisX, thisY;
+      var that;
       that = $(this);
-      thisY = Thinker.coord(that, 'top');
-      thisX = Thinker.coord(that, 'left');
-      Thinker.gotClicked(thisY, thisX);
-      Thinker.decrementMove(1);
-      Thinker.checkRules();
-      return Painter.scoreboard();
+      return Thinker.clickedEvent(that);
     });
   });
 
