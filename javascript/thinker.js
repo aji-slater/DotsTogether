@@ -34,6 +34,7 @@
       if (this.dotMatches.length > 2) {
         Painter.removeMatches();
         Game.addScore(this.dotMatches.length);
+        Thinker.decrementMove(1);
       }
       results = [];
       while (this.Game.noMoreBlanks() !== true) {
@@ -109,10 +110,18 @@
       return this.sliceMovementArray[slice];
     },
     spiralOut: function() {
-      var currentDot, currentDotValue, currentX, currentY, fourDirections, fourMovements, i, j, k, l, m, movementValue, ref, results, sliceMoveDot;
+      var _rand, currentDot, currentDotValue, currentX, currentY, directionality, drawFrom, fourDirections, fourMovements, i, j, k, l, m, movementValue, ref, results, sliceMoveDot;
+      directionality = [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]];
       fourDirections = [0, 1, 0, 1];
       fourMovements = [1, 1, -1, -1];
       currentDot = [Game.center, Game.center];
+      if (Game.board[currentDot[0]][currentDot[1]] === ' ') {
+        _rand = Math.floor(Math.random() * 8);
+        drawFrom = [Game.center + directionality[_rand][0], Game.center + directionality[_rand][1]];
+        Game.board[currentDot[0]][currentDot[1]] = Game.board[drawFrom[0]][drawFrom[1]];
+        Game.board[drawFrom[0]][drawFrom[1]] = ' ';
+        Painter.repaintOne(currentDot[0], currentDot[1]);
+      }
       i = 1;
       results = [];
       while (i < Game.size + 1) {
@@ -201,7 +210,6 @@
       thisY = Thinker.coord(that, 'top');
       thisX = Thinker.coord(that, 'left');
       Thinker.gotClicked(thisY, thisX);
-      Thinker.decrementMove(1);
       Thinker.checkRules();
       return Painter.scoreboard();
     }

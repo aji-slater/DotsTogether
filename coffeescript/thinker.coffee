@@ -2,7 +2,9 @@
   Painter: window.Painter
   Game:    window.Game
 
-  sliceMovementArray: [[-1, -1], [-1, 0], [-1, 1], [0, 1], [1, 1], [1, 0], [1, -1], [0, -1]]
+  sliceMovementArray: [[-1, -1], [-1, 0], [-1, 1],
+                       [0, 1],            [1, 1],
+                       [1, 0],   [1, -1], [0, -1]]
 
   coord: (that, direction) ->
     number = parseInt(that.css(direction))
@@ -21,11 +23,12 @@
   gotClicked: (clickY, clickX) ->
     @dotMatches = []
     @dotMatches.push([clickY, clickX])
-    # @whatDirection(clickY, clickX)
     @recurse(clickY, clickX)
+
     if @dotMatches.length > 2
       Painter.removeMatches()
       Game.addScore(@dotMatches.length)
+      Thinker.decrementMove(1)
     @spiralOut() until @Game.noMoreBlanks() == true
 
   whatDirection: (dotY, dotX) ->
@@ -80,6 +83,10 @@
     @sliceMovementArray[slice]
 
   spiralOut: ->
+    directionality = [[-1,-1], [-1, 0], [-1, 1],
+                      [0, -1],          [0,  1],
+                      [1, -1], [1,  0], [1,  1]]
+
     fourDirections = [0, 1, 0, 1]
     fourMovements = [1, 1, -1, -1]
     currentDot = [Game.center, Game.center]
@@ -88,6 +95,15 @@
     # Painter.repaintOne(currentDot[0], currentDot[1]);
 
     # Act on the center
+
+    if Game.board[currentDot[0]][currentDot[1]] == ' '
+      _rand = Math.floor(Math.random() * 8)
+      drawFrom = [Game.center + directionality[_rand][0],
+                  Game.center + directionality[_rand][1]]
+      Game.board[currentDot[0]][currentDot[1]] =
+        Game.board[drawFrom[0]][drawFrom[1]]
+      Game.board[drawFrom[0]][drawFrom[1]] = ' '
+      Painter.repaintOne currentDot[0], currentDot[1]
 
     # end acting on the center
     i = 1
@@ -197,6 +213,5 @@
     thisY = Thinker.coord that, 'top'
     thisX = Thinker.coord that, 'left'
     Thinker.gotClicked thisY, thisX
-    Thinker.decrementMove(1)
     Thinker.checkRules()
     Painter.scoreboard()

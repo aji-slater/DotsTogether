@@ -30,11 +30,11 @@
     for match in Thinker.dotMatches
       # for i in [0..Thinker.dotMatches.length]
       # for (var i = 0; i < Thinker.dotMatches.length; i++) {
-        removingY = match[0]
-        removingX = match[1]
-        byebyeDot = $(".pos-#{removingY}-#{removingX}")
-        Game.board[removingY][removingX] = ' '
-        # byebyeDot.remove()
+      removingY = match[0]
+      removingX = match[1]
+      byebyeDot = $(".pos-#{removingY}-#{removingX}")
+      Game.board[removingY][removingX] = ' '
+      # byebyeDot.remove()
 
   repaintOne: (y, x) ->
     Painter.removeColorClasses(y, x)
