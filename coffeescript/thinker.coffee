@@ -2,7 +2,9 @@
   Painter: window.Painter
   Game:    window.Game
 
-  sliceMovementArray: [[-1, -1], [-1, 0], [-1, 1], [0, 1], [1, 1], [1, 0], [1, -1], [0, -1]]
+  sliceMovementArray: [[-1, -1], [-1, 0], [-1, 1],
+                       [0, 1],            [1, 1],
+                       [1, 0],   [1, -1], [0, -1]]
 
   coord: (that, direction) ->
     number = parseInt(that.css(direction))
@@ -22,7 +24,7 @@
     @dotMatches = []
     @dotMatches.push([clickY, clickX])
     @recurse(clickY, clickX)
-    
+
     if @dotMatches.length > 2
       Painter.removeMatches()
       Game.addScore(@dotMatches.length)
@@ -101,6 +103,7 @@
       Game.board[currentDot[0]][currentDot[1]] =
         Game.board[drawFrom[0]][drawFrom[1]]
       Game.board[drawFrom[0]][drawFrom[1]] = ' '
+      Painter.repaintOne currentDot[0], currentDot[1]
 
     # end acting on the center
     i = 1

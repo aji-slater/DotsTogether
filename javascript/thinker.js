@@ -120,6 +120,7 @@
         drawFrom = [Game.center + directionality[_rand][0], Game.center + directionality[_rand][1]];
         Game.board[currentDot[0]][currentDot[1]] = Game.board[drawFrom[0]][drawFrom[1]];
         Game.board[drawFrom[0]][drawFrom[1]] = ' ';
+        Painter.repaintOne(currentDot[0], currentDot[1]);
       }
       i = 1;
       results = [];
